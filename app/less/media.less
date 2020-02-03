@@ -225,7 +225,21 @@
       }
     }
   }
-
+    .representation__content {
+        flex-wrap: wrap;
+        &-box {
+            width: 40%;
+            padding-top: 50px;
+        }
+    }
+    .representation__title {
+        padding-bottom: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .main {
+        padding-top: 40px;
+    }
 }
 
 @media screen and (max-width: 950px) {
@@ -245,6 +259,19 @@
 @media screen and (max-width: 820px) {
     .metal {
         width: 65vw;
+    }
+    .last-news {
+        width: 50%;
+    }
+    .event-box {
+        width: 50%;
+    }
+    .descr {
+        margin-right: 0!important;
+        margin-bottom: 0!important;
+    }
+    .main-container .event-box {
+        min-width: unset;
     }
 }
 
@@ -266,10 +293,19 @@
     .footer__top{
         padding-bottom: 30px;
     }
-    .descr__text {
-      font-size: 5vw!important;
-      line-height: 6vw!important;
+    .news__box {
+        .descr__text {
+            font-size: 5vw!important;
+            line-height: 6vw!important;
+        }
     }
+    .representation__title {
+        font-size: 35px;
+    }
+    .representation__title-img-rght, .representation__title-img-lft {
+        height: 200px;
+    }
+
 }
 @media screen and (max-width: 530px) {
     body {
@@ -306,6 +342,34 @@
   }
   .news__bfoto {
     margin: 0 15px;
+  }
+  .main {
+      &-container {
+          flex-wrap: wrap;
+      }
+      .last-news, .event-box {
+        width: 100%;
+          justify-content: center;
+      }
+      .event-box {
+          margin-left: 0;
+          .main__title {
+              padding-top: 40px;
+          }
+          .descr {
+              margin: 0 auto!important;
+          }
+      }
+  }
+  .representation__content-box {
+      width: 45%;
+  }
+  .representation__content-title {
+      font-size: 11px;
+      letter-spacing: -0.2px;
+  }
+  .representation__content-number {
+      font-size: 14vw;
   }
 }
 @media screen and (max-width: 460px) {
@@ -346,6 +410,9 @@
     }
     .metal {
         width: 90vw;
+    }
+    .representation__title {
+        font-size: 24px;
     }
 }
 @media screen and (max-width: 430px) {
