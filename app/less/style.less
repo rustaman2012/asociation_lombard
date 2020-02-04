@@ -589,15 +589,58 @@
     background-color: white;
   }
     &__item {
+      background-color: white;
       flex: 1 0 300px;
       display: flex;
       justify-content: center;
+      flex-direction: column;
       align-items: center;
       border: 1px solid #F0EFFF;
+      padding: 30px 20px;
+      position: relative;
+      &:hover .part-asoc__item-descr {
+        display: block;
+      }
+      &:hover {
+        //transform: translateY(-20px);
+        transform: scale(1.1, 1.1);
+        justify-content: flex-end;
+        z-index: 2;
+      }
       &-img {
-        padding: 30px 20px;
         max-width: 200px;
         max-height: 90px;
+      }
+      &-descr {
+        position: absolute;
+        left: 0;
+        bottom: -70%;
+        z-index: 2;
+        width: ~"calc(100%)";
+        background-color: white;
+        display: none;
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        align-self: flex-start;
+        border: 1px solid #f0efff;
+        border-top: unset;
+
+      }
+      &-name {
+        color: #525366;
+        padding-top: 15px;
+      }
+      &-link {
+        display: block;
+        color: #626CC3;
+        padding-top: 10px;
+      }
+      &-locat {
+        color: #9599B1;
+        padding-top: 10px;
       }
     }
   }
