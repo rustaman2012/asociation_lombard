@@ -81,6 +81,7 @@ $(document).ready(function () {
     window.addEventListener("resize", (e) => {
         e.preventDefault();
         showButtonSwitching();
+        overflow();
     });
 
     //Функция для показа и скрытия кнопок и тени блока металов
@@ -160,22 +161,39 @@ $(document).ready(function () {
     //         }
     //     });
 
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-        metalRow.style.overflowX = 'auto';
-    } else {
-        if (metalRow.addEventListener) {
-            if ('onwheel' in document) {
-                // IE9+, FF17+, Ch31+
-                metalRow.addEventListener("wheel", onWheel);
-            } else if ('onmousewheel' in document) {
-                // устаревший вариант события
-                metalRow.addEventListener("mousewheel", onWheel);
-            } else {
-                // Firefox < 17
-                metalRow.addEventListener("MozMousePixelScroll", onWheel);
+    function overflow() {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+            metalRow.style.overflowX = 'auto';
+        } else {
+            if (metalRow.addEventListener) {
+                if ('onwheel' in document) {
+                    // IE9+, FF17+, Ch31+
+                    metalRow.addEventListener("wheel", onWheel);
+                } else if ('onmousewheel' in document) {
+                    // устаревший вариант события
+                    metalRow.addEventListener("mousewheel", onWheel);
+                } else {
+                    // Firefox < 17
+                    metalRow.addEventListener("MozMousePixelScroll", onWheel);
+                }
             }
+
+            metalRow.addEventListener('mousedown', (e) => {
+                let pagex = e.pageX;
+                let startX = metalRow.scrollLeft + pagex;
+                function scrollItem(event) {
+                    metalRow.scrollLeft = startX - event.pageX;
+                }
+                metalRow.addEventListener('mousemove', scrollItem);
+
+                window.addEventListener('mouseup', (e) => {
+                    metalRow.removeEventListener('mousemove', scrollItem);
+                })
+            });
+
         }
     }
+    overflow();
 
     function onWheel(e) {
         e = e;
@@ -191,11 +209,9 @@ $(document).ready(function () {
         } else if (e.deltaMode == e.DOM_DELTA_PAGE) {
             modifier = this.clientHeight;
         }
-
         if (e.deltaY != 0) {
             // замена вертикальной прокрутки горизонтальной
             metalRow.scrollLeft += modifier * delta;
-            console.log(e.deltaY, e.deltaMode)
             e.preventDefault();
         }
 
