@@ -74,6 +74,7 @@ $(document).ready(function () {
     let downArrow = document.querySelectorAll('.metal__arrow-down');
     let listMetal = document.querySelectorAll('.metal__col');
     let currentMetal = 0;
+
     if (document.body.clientWidth <= 360) {
         showButtonSwitching();
     }
@@ -135,6 +136,73 @@ $(document).ready(function () {
             });
         });
     });
+    //Прокрутка металов в header
+    let metalContainer = document.querySelector('.metal');
+    let metalRow = document.querySelector('.metal__row');
+
+    // metalRow
+    //     .addEventListener('mousewheel', function(event) {
+    //         let modifier;
+    //         if (event.deltaMode == event.DOM_DELTA_PIXEL) {
+    //             modifier = 1;
+    //             // иные режимы возможны в Firefox
+    //         } else if (event.deltaMode == event.DOM_DELTA_LINE) {
+    //             modifier = 30
+    //         } else if (event.deltaMode == event.DOM_DELTA_PAGE) {
+    //             modifier = this.clientHeight;
+    //         }
+    //
+    //         if (event.deltaY != 0) {
+    //             // замена вертикальной прокрутки горизонтальной
+    //             this.scrollLeft += modifier * event.deltaY;
+    //             console.log(event.deltaY, event.deltaMode)
+    //             event.preventDefault();
+    //         }
+    //     });
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+        metalRow.style.overflowX = 'auto';
+    } else {
+        if (metalRow.addEventListener) {
+            if ('onwheel' in document) {
+                // IE9+, FF17+, Ch31+
+                metalRow.addEventListener("wheel", onWheel);
+            } else if ('onmousewheel' in document) {
+                // устаревший вариант события
+                metalRow.addEventListener("mousewheel", onWheel);
+            } else {
+                // Firefox < 17
+                metalRow.addEventListener("MozMousePixelScroll", onWheel);
+            }
+        }
+    }
+
+    function onWheel(e) {
+        e = e;
+        // wheelDelta не даёт возможность узнать количество пикселей
+        var delta = e.deltaY || e.detail || e.wheelDelta;
+
+        let modifier;
+        if (e.deltaMode == e.DOM_DELTA_PIXEL) {
+            modifier = 1;
+            // иные режимы возможны в Firefox
+        } else if (e.deltaMode == e.DOM_DELTA_LINE) {
+            modifier = 30
+        } else if (e.deltaMode == e.DOM_DELTA_PAGE) {
+            modifier = this.clientHeight;
+        }
+
+        if (e.deltaY != 0) {
+            // замена вертикальной прокрутки горизонтальной
+            metalRow.scrollLeft += modifier * delta;
+            console.log(e.deltaY, e.deltaMode)
+            e.preventDefault();
+        }
+
+        e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    }
+
+    //header
 
     //
     // let initPoint, finPoint, ePoint;

@@ -10,13 +10,18 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache'),
     path = require('path');
+    babel = require('gulp-babel');
 
 
 gulp.task('js', function () {
     return gulp.src([
             //'app/libs/owl/owl.carousel.min.js',
             'app/js/main.js' // Всегда в конце
-        ])
+        ]).pipe(babel(
+            {
+                presets: ['@babel/env']
+            }
+        ))
         .pipe(concat('scripts.min.js'))
         // .pipe(uglify()) // Минимизировать весь js (на выбор)
         .pipe(gulp.dest('dist/js'))

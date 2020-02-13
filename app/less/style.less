@@ -270,14 +270,13 @@
 .metal__row {
   position: relative;
   display: flex;
-  overflow-x: auto;
+  overflow-x: hidden;
   justify-content: flex-end;
   //position: absolute;
   //right: 0;
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none;
   &::-webkit-scrollbar {
     width: 0;
+    display: none;
   }
 }
 
