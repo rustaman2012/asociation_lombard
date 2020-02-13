@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     //Функция для показа и скрытия кнопок и тени блока металов
     function showButtonSwitching() {
-        let metalShadow = document.querySelector('.metal__right-shadow');
+        // let metalShadow = document.querySelector('.metal__right-shadow');
         if (document.body.clientWidth <= 360) {
             // buttonBox.classList.remove('hidden');
             buttonBox.forEach((el) => {
@@ -97,13 +97,13 @@ $(document).ready(function () {
                     item.classList.add('hidden');
                 }
             });
-            metalShadow.classList.add('hidden');
+            // metalShadow.classList.add('hidden');
         } else {
             // buttonBox.classList.add('hidden');
             buttonBox.forEach((el) => {
                 el.classList.add('hidden');
             });
-            metalShadow.classList.toggle('hidden') ? metalShadow.classList.remove('hidden') : "";
+            // metalShadow.classList.toggle('hidden') ? metalShadow.classList.remove('hidden') : "";
             listMetal.forEach((item) => {
                     item.classList.remove('hidden');
             });
@@ -217,47 +217,5 @@ $(document).ready(function () {
 
         e.preventDefault ? e.preventDefault() : (e.returnValue = false);
     }
-
-    //header
-
-    //
-    // let initPoint, finPoint, ePoint;
-    //
-    // listScrBlock.addEventListener('touchstart', (e) =>{
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     initPoint = e.changedTouches[0].pageX;
-    //     scrollBox(initPoint, ePoint, finPoint);
-    // });
-    //
-    // listScrBlock.addEventListener('touchmove', (e) =>{
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     ePoint = e.changedTouches[0].pageX;
-    //     scrollBox(initPoint, ePoint, finPoint);
-    // });
-    //
-    // listScrBlock.addEventListener('touchend', (e) => {
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     finPoint = e.changedTouches[0].pageX;
-    //     scrollBox(initPoint, ePoint, finPoint);
-    // });
-    //
-    // function scrollBox(initPoint, ePoint, finPoint) {
-    //     console.log('InitPoint ', initPoint);
-    //     console.log('ePoint ', ePoint);
-    //     console.log('finalPoint', finPoint);
-    //     if (initPoint && ePoint) {
-    //         listScrBlock.style.left = `${ePoint - initPoint}px`;
-    //         console.log("Completed");
-    //         if () {
-    //
-    //         }
-    //     }
-    //     // if (finPoint) {
-    //     //     listScrBlock.style.left = `${scrBox.offsetWidth-listScrBlock.offsetWidth}px`;
-    //     // }
-    // }
 
 });

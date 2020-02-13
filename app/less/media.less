@@ -2,10 +2,12 @@
 @media screen and (max-width: 1360px) {
     .metal {
         width: 73vw;
-      &__right-shadow {
+      &::after {
+          content: '';
         position: absolute;
         z-index: 1;
-        right: 0;
+        right: -1%;
+        top: 0;
         width: 72px;
         height: 64px;
         background-image: linear-gradient(90deg, rgba(22, 29, 67, 0) -8.33%, #161D43 100%);
@@ -158,8 +160,8 @@
         }
     }
     .sub-menu__list {
-        display: none; 
-        position: relative;   
+        display: none;
+        position: relative;
     }
     .sub-menu__item {
         padding-left: 10px;
@@ -187,7 +189,7 @@
             right: 0;
             color: #96A4EF;
         }
-  
+
     }
     .menu__logo-box {
         max-width: 200px;
@@ -382,8 +384,8 @@
     }
     .menu {
         order: 1;
-        margin-right: 0;  
-    } 
+        margin-right: 0;
+    }
     .hamburger {
         margin-right: 0;
     }
@@ -453,6 +455,9 @@
     }
     .metal__row {
       overflow: hidden;
+    }
+    .metal::after {
+        display: none;
     }
 
 }
